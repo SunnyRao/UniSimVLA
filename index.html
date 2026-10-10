@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UniSimVLA: From Simulated Data to Deployed Policies for Drones, Vehicles and Robots</title>
+  <meta name="description" content="A unified simulation data engine, multi-task embodied perception VLA and closed-loop deployment framework for robots, ground vehicles and drones.">
+  <meta property="og:title" content="UniSimVLA">
+  <meta property="og:description" content="Unified simulation data engine + multi-task VLA + closed-loop deployment, across robots, ground vehicles and drones.">
+  <meta property="og:image" content="static/images/posters/teaser.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="container topnav-inner">
+    <a class="brand" href="#top">UniSimVLA</a>
+    <div class="topnav-links">
+      <a href="#overview">Overview</a>
+      <a href="#model">VLA Model</a>
+      <a href="#engine">Data Engine</a>
+      <a href="#videos">Demos</a>
+      <a href="#credits">Credits</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top" class="hero">
+  <div class="container narrow">
+    <h1 class="title">UniSimVLA</h1>
+    <p class="subtitle">Unified Simulation Data Engine &rarr; Multi-task Embodied Perception VLA &rarr; Closed-loop Deployment for Robots, Vehicles and Drones</p>
+    <p class="authors">
+      <a href="https://github.com/SunnyRao" target="_blank" rel="noopener">Sunny Rao</a>
+    </p>
+    <div class="link-buttons">
+      <a class="btn" href="https://github.com/SunnyRao" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        Code
+      </a>
+      <a class="btn" href="#videos">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        Videos
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <figure class="teaser">
+      <div class="teaser-frame" id="teaser"></div>
+      <figcaption id="teaser-caption"></figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section id="overview" class="section section-alt overview">
+  <div class="container narrow">
+    <h2>Overview</h2>
+    <p>
+      A full-stack framework built on simulation: a <strong>unified simulation data engine</strong> produces labeled demonstrations,
+      a <strong>multi-task embodied perception VLA</strong> learns 3D perception and navigation jointly,
+      and <strong>closed-loop deployment</strong> tests the model back in simulation.
+    </p>
+    <ol class="flow">
+      <li>
+        <span class="flow-step">1</span>
+        <h3>Unified Simulation Data Engine</h3>
+        <p>One Isaac Sim pipeline for navigation and manipulation: real-to-sim scenes and assets, domain randomization.</p>
+      </li>
+      <li>
+        <span class="flow-step">2</span>
+        <h3>Multi-task Embodied VLA</h3>
+        <p>FutureNav-based, Qwen3.5-0.8B backbone, 3D perception heads, tracking and instruction navigation.</p>
+      </li>
+      <li>
+        <span class="flow-step">3</span>
+        <h3>Closed-loop Deployment</h3>
+        <p>In-simulation closed-loop tests and automated evaluation, ~500&nbsp;ms per step on an RTX&nbsp;5080.</p>
+      </li>
+    </ol>
+    <div class="embodiments">
+      <span class="embodiment">Robot</span>
+      <span class="embodiment">Vehicle</span>
+      <span class="embodiment">Drone</span>
+    </div>
+  </div>
+</section>
+
+<section id="model" class="section">
+  <div class="container narrow">
+    <h2>Multi-task Embodied Perception VLA</h2>
+    <p class="section-text">
+      Starting from the world-action model FutureNav, the navigation VLA is extended into a multi-task embodied perception
+      foundation model. 3D perception heads are attached to the VGGT 3D geometry features and the LLM hidden states,
+      and the model is trained jointly on 3D perception and navigation using simulated data.
+    </p>
+    <dl class="specs">
+      <dt>Base model</dt><dd>FutureNav (world-action model)</dd>
+      <dt>Backbone</dt><dd>Qwen3.5-0.8B</dd>
+      <dt>3D perception heads</dt><dd>Depth &middot; DETR-style 3D detection &middot; BEV occupancy map <span class="wip">in progress</span></dd>
+      <dt>Tasks</dt><dd>Target tracking &middot; Instruction navigation</dd>
+      <dt>Embodiments</dt><dd>Robot &middot; Vehicle &middot; Drone</dd>
+      <dt>Deployment</dt><dd>Closed loop on a single RTX 5080, ~500&nbsp;ms per step</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="engine" class="section section-alt">
+  <div class="container">
+    <h2>Unified Simulation Data Engine</h2>
+    <p class="section-text narrow-text">
+      One unified Isaac Sim based platform for navigation and manipulation: shared scenes, assets, randomization and
+      recording across embodiments, closing the loop between data generation, model deployment and automated testing.
+    </p>
+    <div class="features">
+      <div class="feature">
+        <h3>3D scenes: real to sim</h3>
+        <p>Mid360 handheld capture &rarr; FAST-LIVO2 point-cloud reconstruction &rarr; 3DGS / surface reconstruction, turning real spaces into high-fidelity simulation scenes.</p>
+      </div>
+      <div class="feature">
+        <h3>3D assets</h3>
+        <p>Real objects digitized with 3DGS plus surface reconstruction; image-to-3D models (Hunyuan3D, SAM 3D) for building simulation assets in batch.</p>
+      </div>
+      <div class="feature">
+        <h3>Manipulation</h3>
+        <p>Data synthesis &rarr; VLA training &rarr; simulated deployment &rarr; automated testing. Single- and dual-arm tasks; model training and deployment testing based on &pi;0.5.</p>
+      </div>
+      <div class="feature">
+        <h3>Navigation</h3>
+        <p>Target tracking and instruction navigation, with 3D perception labels: depth, semantic / instance segmentation, 2D / 3D boxes.</p>
+      </div>
+      <div class="feature">
+        <h3>Data production</h3>
+        <p>Domain randomization over layout, robot pose, camera and lighting. Layout and trajectory planning are decoupled from rendering and recording: 1k+ samples per day on a single RTX 5080.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="videos" class="section">
+  <div class="container">
+    <h2>Demos</h2>
+    <p class="section-lead">Previews autoplay muted when scrolled into view. Click any video to open it in full size.</p>
+    <div class="filters" id="filters" role="tablist"></div>
+    <div id="gallery"></div>
+  </div>
+</section>
+
+<section id="compare" class="section section-alt" hidden>
+  <div class="container">
+    <h2>Side-by-side Comparison</h2>
+    <div id="compare-list"></div>
+  </div>
+</section>
+
+<section id="credits" class="section section-alt">
+  <div class="container narrow">
+    <h2>Credits</h2>
+    <p>This project builds on the following open-source work; the base methods belong to their original authors.</p>
+    <ul class="credits">
+      <li><a href="https://github.com/PegasusSimulator/PegasusSimulator" target="_blank" rel="noopener">Pegasus Simulator</a> and <a href="https://developer.nvidia.com/isaac/sim" target="_blank" rel="noopener">NVIDIA Isaac Sim</a> &mdash; simulation.</li>
+      <li><a href="https://github.com/linglingxiansen/FutureNav" target="_blank" rel="noopener">FutureNav</a>, <a href="https://github.com/om-ai-lab/OmTrackVLA" target="_blank" rel="noopener">OpenTrackVLA</a> and <a href="https://github.com/Physical-Intelligence/openpi" target="_blank" rel="noopener">&pi;0.5 (openpi)</a> &mdash; base policy models.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; Sunny Rao.</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-backdrop" data-close></div>
+  <div class="lightbox-body" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <button class="lightbox-close" type="button" aria-label="Close" data-close>&times;</button>
+    <div class="lightbox-media" id="lightbox-media"></div>
+    <div class="lightbox-meta">
+      <h3 id="lightbox-title"></h3>
+      <p id="lightbox-desc"></p>
+    </div>
+  </div>
+</div>
+
+<script src="static/js/videos.js"></script>
+<script src="static/js/main.js"></script>
+</body>
+</html>
