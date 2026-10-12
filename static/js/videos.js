@@ -25,8 +25,8 @@ function item(name, fields) {
 window.PAGE_VIDEOS = {
   teaser: Object.assign(v("teaser"), {
     caption:
-      "One pipeline, multiple embodiments: drone person following and navigation in Isaac Sim, " +
-      "dense 3D perception labels, and a robot arm running a policy trained on generated data.",
+      "Closed-loop person following with online 3D perception, navigation in randomized and 3DGS scenes, " +
+      "and dense 3D perception labels from the simulation data engine.",
   }),
 
   sections: [
