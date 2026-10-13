@@ -77,14 +77,14 @@ window.PAGE_VIDEOS = {
       items: [
         item("datagen_person_track_3d_perception_vis", {
           title: "Person following + 3D perception labels",
-          desc: "Hospital scene. RGB with synchronized depth, semantic / instance masks, 2D and 3D boxes.",
-          tags: ["person track", "3D perception"],
+          desc: "Hospital scene. RGB with synchronized depth, semantic masks, 2D / 3D boxes, BEV semantics and 3D semantic occupancy.",
+          tags: ["person track", "3D perception", "occupancy"],
           wide: true,
         }),
         item("datagen_nav_3d_perception_vis", {
           title: "Navigation + 3D perception labels",
           desc: "Hospital scene. Same multi-channel labels recorded for instruction navigation episodes.",
-          tags: ["navigation", "3D perception"],
+          tags: ["navigation", "3D perception", "occupancy"],
           wide: true,
         }),
         item("datagen_person_track_grid", {
