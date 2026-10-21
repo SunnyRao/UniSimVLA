@@ -25,7 +25,7 @@ function item(name, fields) {
 window.PAGE_VIDEOS = {
   teaser: Object.assign(v("teaser"), {
     caption:
-      "Closed-loop person following with online 3D perception, navigation in randomized and 3DGS scenes, " +
+      "Closed-loop person following with online 3D perception and BEV occupancy, navigation in randomized and 3DGS scenes, " +
       "and dense 3D perception labels from the simulation data engine.",
   }),
 
@@ -36,9 +36,9 @@ window.PAGE_VIDEOS = {
       desc: "Trained policies running in closed loop.",
       items: [
         item("eval_person_track_3d_perception_hospital", {
-          title: "Person following + 3D perception",
-          desc: "Hospital scene. The model tracks the person while predicting 3D perception outputs online.",
-          tags: ["drone", "person track", "3D perception"],
+          title: "Person following + 3D perception + BEV occupancy",
+          desc: "Hospital scene. The model tracks the person while predicting depth, 3D boxes and a BEV occupancy map online.",
+          tags: ["drone", "person track", "3D perception", "occupancy"],
           wide: true,
         }),
         item("eval_person_track_hospital", {
